@@ -1,0 +1,6 @@
+flask run --cert=adhoc
+set FLASK_ENV=development
+
+You can generate self-signed certificates easily from the command line. :
+
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365

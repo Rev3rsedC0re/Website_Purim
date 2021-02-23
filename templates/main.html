@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Hiddon Purim!
+{% endblock %}
+
+{% block imports %}
+
+<style>
+select {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-style: italic;
+	width: 400px;
+}
+select#fixed {
+    -webkit-appearance: none;
+	 text-align: right;
+}
+.back{
+	background-image: url('https://meyda.education.gov.il/files/pop/5165/purim3333.jpg');
+	background-size: 100% 900px;
+	background-repeat: repeat-y;
+}
+body {background-color: coral;}
+.slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 25px;
+  border-radius: 5px; 
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+	<form action="{{ url_for('check') }}" method="post">
+		<div class="form-group, back" style="text-align: center; margin-bottom: 7%;">
+			<h1>{{ title }}</h1>
+			<br>
+			<br>
+			<p><h4>{{ p1 }}</h4></p>
+			<br>
+			<br>
+			<div>
+				{% for question in questions %}
+					<h2 dir="rtl">{{ question['title'] }}</h2>
+					<select id="fixed" name={{  questions.index(question) }} style="text-align:center;" dir="rtl">         
+						<option value="1" style="text-align:center;">{{ question['opt1'] }}</option>       
+						<option value="2" style="text-align:center;">{{ question['opt2'] }}</option>       
+						<option value="3" style="text-align:center;">{{ question['opt3'] }}</option>
+						<option value="4" style="text-align:center;">{{ question['opt4'] }}</option>
+					</select>
+					<br>
+					<br>
+					<br>
+				{% endfor %}
+			</div>
+			<br>
+			<br>
+			<h2 dir="rtl">{{ h1 }}</h2>
+			<img src="{{url_for('static', filename='pic1.png')}}" alt="Find" style="width: 600px; height:450px">
+			<br><br>
+			<input style="width: 400px;" dir="rtl" name="pic1_input">
+			<br><br><br>
+			<h2 dir="rtl">{{ h2 }}</h2>
+			<img src="{{url_for('static', filename='pic2.png')}}" alt="Find" style="width: 600px; height:600px">
+			<br><br>
+			<input style="width: 400px;" dir="rtl" name="pic2_input">
+			<br><br><br>
+			<h2 dir="rtl">{{ h3 }}</h2>
+			<img src="{{url_for('static', filename='pic3.png')}}" id="img" alt="Find" style="width: 600px; height:600px">
+			<br><br>
+			<input type="range" min="1" max="100" value="50" class="slider" id="range1" oninput="updateSlider()">
+			<input type="range" min="1" max="100" value="50" class="slider" id="range2" oninput="updateSlider()">
+			<input type="range" min="1" max="100" value="50" class="slider" id="range3" oninput="updateSlider()">
+			<br><br>
+			<input style="width: 400px;" dir="rtl" name="pic3_input">
+		</div>
+		<div class="form-group">
+            <button class="btn btn-primary">Check</button>
+        </div>
+	</form>
+
+	<script>
+	function updateSlider(){
+		var i = document.getElementById("range1").value;
+		var j = document.getElementById("range2").value;
+		var k = document.getElementById("range3").value;
+		var blur = Math.sqrt((i-23)*(i-23)+(j-87)*(j-87)+(k-63)*(k-63))/3
+		document.getElementById("img").style.filter = "blur("+blur+"px)";
+	}
+	document.getElementById("img").style.filter = "blur(30px)";
+	//document.getElementById("img").style.-webkit-filter = "blur(5px)";
+	</script>
+{% endblock %}

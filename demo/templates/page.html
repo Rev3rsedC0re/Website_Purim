@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My title</title>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		// io.connect(location.protocol + '//' + document.domain + ':' + location.port + '/private');
+			const socket =	io('/private');
+			socket.on("connect", () => {
+				console.log("connect");
+			});
+			socket.on("status", (status) => {
+				console.log("received status: " + status.data);
+			});
+			socket.on("room_message", (msg) => {
+				console.log("message from room: " + msg);
+			});
+			function joinRoom(room) {
+				console.log("ask server to join room");
+				socket.emit("join", { "user": Date.now(), "room": room });
+			}
+		</script>
+	</head>
+
+	<body>
+		<button onclick="joinRoom('Notifications')">Join Notifications</button>
+		<button onclick="joinRoom('Updates')">Join Updates</button>
+	</body>
+</html>

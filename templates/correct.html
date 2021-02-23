@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Great!
+{% endblock %}
+
+{% block imports %}
+
+<style>
+.back{
+	background-image: url('https://meyda.education.gov.il/files/pop/5165/purim3333.jpg');
+	background-size: 100% 700px;
+}
+body {background-color: coral;}
+</style>
+{% endblock %}
+
+{% block body %}
+	<div class="form-group, back" style="text-align: center; margin-bottom: 7%; height: 700px;">
+		<br>
+		<h1>{{ h1 }}</h1>
+		<br>
+		<br>
+		<br>
+		<div>
+			<h3 dir="rtl">{{ h2 }}</h3>
+			<br>
+			<h2 dir="rtl">{{ h3 }}</h2>
+		</div>
+	</div>
+{% endblock %}

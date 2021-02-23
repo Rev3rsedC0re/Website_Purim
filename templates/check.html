@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    welcome
+{% endblock %}
+
+{% block imports %}
+
+<style>
+.back{
+	background-image: url('https://meyda.education.gov.il/files/pop/5165/purim3333.jpg');
+	background-size: 100% 900px;
+	background-repeat: repeat-y;
+}
+body {background-color: coral;}
+</style>
+{% endblock %}
+
+{% block body %}
+	<div class="form-group, back" style="text-align: right; margin-bottom: 7%;">
+		<div class="form-group" style="text-align: center;">
+			<h1 dir="rtl">{{ title }}</h1>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div>
+			<h2 dir="rtl">{{ sub }}</h2>
+			<br><br>
+			{% for mistake in mistakes %}
+				<h3 dir="rtl">{{ mistake }}</h3>
+				<br>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
